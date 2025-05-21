@@ -32,7 +32,8 @@ const io = socketio(expressServer,{
 
 const PORT = process.env.PORT || 8181;
 expressServer.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+    console.log(`Server running on port ${PORT}`);
+    console.log('Updated')
 });
 
 //offers will contain {}
