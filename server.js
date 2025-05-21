@@ -11,30 +11,28 @@ app.use(express.static(__dirname))
 //we generated them with mkcert
 // $ mkcert create-ca
 // $ mkcert create-cert
-const key = fs.readFileSync('192.168.255.5-key.pem');
-const cert = fs.readFileSync('192.168.255.5.pem');
+// const key = fs.readFileSync('192.168.255.5-key.pem');
+// const cert = fs.readFileSync('192.168.255.5.pem');
 
 //we changed our express setup so we can use https
 //pass the key and cert to createServer on https
-const expressServer = https.createServer({key, cert}, app);
+// const expressServer = https.createServer({key, cert}, app);
 
-//const expressServer = http.createServer(app);
+const expressServer = http.createServer(app);
 //create our socket.io server... it will listen to our express port
 const io = socketio(expressServer,{
     cors: {
         origin: [
-            // "https://localhost:3000",
-            // "https://localhost:3001",
-            "https://192.168.255.5:3000"
-            // 'https://LOCAL-DEV-IP-HERE' //if using a phone or another computer
+            https://test-react-2-psi.vercel.app
         ],
         methods: ["GET", "POST"]
     }
 });
 
 
-expressServer.listen(8181, '0.0.0.0', () => {
-  console.log('Server running on https://192.168.1.10:8181');
+const PORT = process.env.PORT || 8181;
+expressServer.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
 
 //offers will contain {}
