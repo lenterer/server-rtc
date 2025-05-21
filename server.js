@@ -23,7 +23,7 @@ const expressServer = http.createServer(app);
 const io = socketio(expressServer,{
     cors: {
         origin: [
-            https://test-react-2-psi.vercel.app
+            "https://test-react-2-psi.vercel.app"
         ],
         methods: ["GET", "POST"]
     }
